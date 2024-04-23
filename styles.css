@@ -1,0 +1,1428 @@
+/* Сброс стилей и базовые стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0s, opacity 0.3s ease;
+  }
+  
+  body {
+      font-family: 'PT Sans', sans-serif;
+      background: #000;
+      color: white;
+      margin: 0;
+      padding: 0;
+  }
+  
+  /* Стили для модальных окон */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Цвет фона с прозрачностью */
+  }
+  
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Отцентрировать модальное окно */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Ширина модального окна */
+    max-width: 500px; /* Максимальная ширина */
+  }
+  
+  /* Кнопка закрыть (крестик) */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Стили для формы входа и регистрации */
+  .auth-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .auth-form label {
+    margin-bottom: 5px;
+  }
+  
+  .auth-form input[type="text"],
+  .auth-form input[type="password"],
+  .auth-form input[type="email"],
+  .auth-form input[type="tel"] {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .auth-form button {
+    background-color: #5C9ACF;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .auth-form button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Стили для сообщений об ошибках */
+  .error-message {
+    color: red;
+    font-size: 0.8em;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    display: none; /* Изначально скрыто */
+  }
+  
+  /* Основные стили шапки */
+  header {
+      font-size: 16px;
+      line-height: 1.5;
+      background: rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Верхняя строка шапки */
+  .top-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 3%;
+      position: relative; /* Для позиционирования псевдоэлемента */
+  }
+  
+  /* Стили для светлой темы */
+  .light-theme .second-line::before {
+      background: #000; /* Черный цвет полосы для светлой темы */
+    }
+    
+    /* Стили для темной темы */
+    .dark-theme .second-line::before {
+      background: #FFD700; /* Желтый цвет полосы для темной темы */
+    }
+  
+  /* Стиль для нижней части шапки */
+  .second-line {
+      /* ... */
+      position: relative; /* Для позиционирования псевдоэлемента */
+    }
+  
+    /* Стили для светлой темы */
+  .light-theme .second-line::before {
+      background: #000; /* Черный цвет полосы для светлой темы */
+    }
+  
+    .buttons-container {
+      text-align: center;
+      padding: 1px;
+    }
+    
+    .auth-button {
+      background-color: transparent; /* Прозрачный фон */
+      color: white; /* Белый текст */
+      border: 1px solid white; /* Белая рамка */
+      border-radius: 11px; /* Скругление углов */
+      padding: 5px 11px; /* Внутренние отступы */
+      font-size: 17px; /* Размер шрифта */
+      cursor: pointer; /* Курсор в виде указателя */
+      margin: 1 5px; /* Отступы справа и слева */
+      transition: transform 0.3s, box-shadow 0.3s; /* Анимация для трансформации и тени */
+    }
+    
+    .auth-button:hover {
+      transform: scale(1.05); /* Увеличение размера при наведении */
+    }
+    
+    /* Стили для тени в светлой теме */
+    .light-theme .auth-button {
+      color:#000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* Чёрная тень */
+    }
+    
+  /* Стили для тени в темной теме */
+  .dark-theme .auth-button {
+    box-shadow: 0 2px 4px rgba(255, 255, 255, 0.5); /* Белая тень */
+  }
+    
+  .divider {
+      color: white; /* Цвет разделителя */
+      font-size: 20px; /* Размер шрифта разделителя */
+      margin: 0 10px; /* Отступы для разделителя */
+    }    
+    
+  /* Стили для темной темы */
+  .dark-theme .second-line::before {
+      background: #FFD700; /* Желтый цвет полосы для темной темы */
+    }
+  
+  /* Псевдоэлемент для добавления полосы разделения между .top-line и .second-line */
+  .second-line::before {
+      content: '';
+      display: block;
+      height: 1px; /* Толщина полосы */
+      background: #000; /* Цвет полосы по умолчанию (черный) */
+      width: 100%; /* Полоса на всю ширину */
+      position: absolute;
+      top: -3px; /* Сдвигаем полосу вверх на толщину полосы */
+    }
+  
+  .phone-info {
+      color: #969696;
+      font-size: 0.875rem;
+  }
+  
+  .auth .login {
+      color: #bababa;
+      font-size: 0.875rem;
+      transition: color 0.3s;
+      text-decoration: none;
+  }
+  
+  .auth .login:hover {
+      color: white;
+  }
+  
+  /* Нижняя строка шапки */
+  .second-line .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 3%;
+  }
+  
+  .logo {
+      font-size: 2.25rem;
+      flex-grow: 1;
+      text-align: left;
+  }
+  
+  /* Стили для навигации и иконок */
+  .menu-icons {
+      display: flex;
+      align-items: center;
+  }
+  
+  .menu-button {
+      background: transparent;
+      border: none;
+      color: white;
+      font-size: 0.9rem;
+      cursor: pointer;
+      padding: 10px 20px;
+  }
+  
+  .icon-search, .icon-cart, .theme-toggle {
+      background: none;
+      border: none;
+      margin-left: 19px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: white;
+  }
+  
+  body.dark-theme {
+    background: #000;
+    color: white;
+  }
+  
+  /* Стили для темной темы при наведении на блоки */
+  body.dark-theme .second-section .block:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Более выраженная тень */
+    transform: scale(1.05); /* Увеличение размера блока */
+  }
+  
+  /* Стили для темной темы при наведении на блоки */
+  body.dark-theme .second-section .block:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Более выраженная тень */
+    transform: scale(1.05); /* Увеличение размера блока */
+  }
+  
+  body.dark-theme .second-section .block:hover img {
+    opacity: 1; /* Чуть затемняем картинку в блоке */
+  }
+  
+  body.dark-theme .second-section:hover .block:not(:hover) {
+    opacity: 0.7; /* Остальные блоки немного затемняем */
+  }
+  
+  /* Сброс стилей для темной темы при наведении на секцию */
+  body.dark-theme .new-arrivals:hover {
+    background-color: transparent; /* Убираем изменение фона при наведении */
+  }
+  
+  body.dark-theme .new-arrivals .product-item:hover {
+    background-color: #000; /* Темный фон для активного блока */
+  }
+  
+  body.dark-theme .new-arrivals:hover .product-item:not(:hover) {
+    background-color: #000; /* Темный фон для неактивных блоков */
+  }
+  
+  /* Дополнительные стили для темной темы всего блока .new-arrivals */
+  body.dark-theme .new-arrivals {
+    background-color: #000; /* Черный фон для всей секции */
+  }
+  
+  body.dark-theme .new-arrivals h2,
+  body.dark-theme .new-arrivals h3,
+  body.dark-theme .new-arrivals p {
+    color: #fff; /* Белый цвет текста для темной темы */
+  }
+  
+  /* Стили для фонового изображения */
+  .background-image {
+      position: relative;
+      height: calc(100vh - 100px); /* Высота отнимает высоту шапки */
+      background: url('img/1Block.webp') no-repeat center center;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center; /* Центрирование содержимого блока */
+    }
+  
+  /* Стили для затемнения фона, только когда включена темная тема */
+  .dark-theme .background-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.7); /* Более сильное затемнение для темной темы */
+      z-index: 1;
+    }
+  
+    /* Стили для темной темы */
+  .dark-theme .top-line,
+  .dark-theme .second-line {
+    background-color: #000; /* Темный фон шапки */
+  }
+  
+  .dark-theme .intro-text {
+      background: rgba(0, 0, 0, 0.7); /* Темный затемненный фон для текста */
+      border: 1px solid #000000; /* Белая рамка */
+      color: white; /* Белый цвет текста для контраста на темном фоне */
+    }
+  
+  /* Переопределяем стили затемнения для светлой темы */
+  .light-theme .background-image::before {
+      background: rgba(0, 0, 0, 0.3); /* Слабое затемнение для светлой темы */
+    }
+  
+  /* Псевдоэлемент для затемнения фона */
+  .background-image::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75); /* Увеличиваем непрозрачность затемнения для большего контраста */
+      z-index: 1; /* Убедитесь, что затемнение находится ниже текста */
+    }
+  
+  /* Стили для блока с текстом */
+  .intro-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      flex-direction: column;
+      max-width: 755px; /* Ширина блока с текстом */
+      padding: 1rem; /* Внутренние отступы */
+      border: 1px solid #fff; /* Белая рамка */
+      background: none; /* Убираем фон */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7); /* Сглаживаем тень */
+      color: white; /* Белый текст */
+      z-index: 2;
+      align-items: center; /* Центрирование текста по горизонтали */
+      justify-content: center; /* Центрирование текста по вертикали */
+      text-align: center; /* Выравнивание текста по центру */
+    }
+    
+    /* Светлая тема - стили для надписи "TEACH THE WORLD" */
+  .light-theme .intro-text h1 {
+      color: #fff; /* Белый цвет текста */
+    }
+  
+  /* Стилизация текста в .intro-text */
+  .intro-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 700; /* Указываем жирность шрифта */
+      font-size: 3rem; /* Увеличиваем размер шрифта для большей выразительности */
+      margin-bottom: 1rem; /* Увеличиваем отступ снизу */
+      color: #FFD700; /* Золотистый цвет для заголовка, если нужен именно такой цвет */
+      position: relative; /* Для позиционирования псевдоэлемента */
+    }
+  
+    /* Псевдоэлемент для полоски под D-BOOK */
+  .intro-text h2::after {
+      content: '';
+      display: block;
+      width: 339px; /* Ширина полоски */
+      height: 3px; /* Высота полоски */
+      background: currentColor; /* Цвет полоски будет таким же, как у текста */
+      margin: 0.3em auto 0.3em; /* Отступ сверху, автоматические отступы по бокам и снизу */
+    }
+  
+    /* Стили для светлой темы */
+  .light-theme .intro-text h2::after {
+      background: #ffffff; /* Черная полоска для светлой темы */
+    }
+  
+    /* Стили для темной темы */
+  .dark-theme .intro-text h2::after {
+      background: #FFF; /* Белая полоска для темной темы */
+    }
+    
+    .intro-text p {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.3rem; /* Увеличиваем размер шрифта для лучшей читаемости */
+      color: #FFF; /* Устанавливаем белый цвет текста */
+      max-width: 750px; /* Ограничиваем ширину текстового блока */
+      margin: 0 auto; /* Центрирование блока */
+      padding: 1rem; /* Паддинг вокруг текста */
+    }
+  
+  /* Стили для светлой темы */
+  .light-theme {
+      background-color: #fff;
+      color: #ffffff;
+  }
+  
+  /* Стили для затемнения текста на светлой теме */
+  .light-theme .intro-text {
+      background: rgba(0, 0, 0, 0.75); /* Затемненный фон для текста */
+      color: #000; /* Черный цвет текста */
+    }
+  
+    /* Стили для светлой темы */
+  .light-theme .new-arrivals {
+      background-color: #fff; /* Белый фон для светлой темы */
+      /* Изменения цветов текста, если они есть */
+    }
+  
+  /* Сброс стилей при наведении на продукты в светлой теме */
+  .light-theme .product-item:hover {
+      background-color: #fff; /* сохраняем белый фон */
+      transform: scale(1.05); /* увеличиваем размер только карточки под курсором */
+      z-index: 10; /* увеличиваем z-index для карточки под курсором */
+      box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2); /* добавляем тень вокруг карточки под курсором */
+    }
+  
+    /* Стили для карточек, которые не находятся под курсором */
+  .light-theme .products:hover .product-item:not(:hover) {
+      opacity: 0.6; /* затемняем остальные карточки */
+    }
+  
+  /* Стили для светлой темы */
+  .light-theme .top-line,
+  .light-theme .second-line {
+    background-color: #c7c7c7; /* Серый фон для шапки */
+  }
+  
+  .light-theme .new-arrivals h2,
+  .light-theme .new-arrivals h3,
+  .light-theme .new-arrivals p {
+    color: #000; /* Черный цвет текста для светлой темы */
+  }
+  
+  .light-theme .logo,
+  .light-theme .menu-button,
+  .light-theme .icon-search,
+  .light-theme .icon-cart,
+  .light-theme .theme-toggle {
+      color: #000;
+  }
+  
+  .dark-theme .logo::after {
+      background: white; /* Белая полоска для темной темы */
+    }
+  
+    /* Стили для темной темы */
+  .dark-theme .new-arrivals {
+      background-color: #000; /* Черный фон для темной темы */
+      /* Изменения цветов текста, если они есть */
+    }
+  
+  .dark-theme .new-arrivals h2,
+  .dark-theme .new-arrivals h3,
+  .dark-theme .new-arrivals p {
+    color: #fff; /* Белый цвет текста для темной темы */
+  }
+  
+  .light-theme .phone-info,
+  .light-theme .auth .login {
+      color: #000000;
+  }
+  
+  /* Стили для светлой темы */
+  .light-theme .block:hover {
+      background-color: #ffffff; /* Белый фон при наведении */
+  }
+  
+  /* Стили для светлой темы при наведении на общий контейнер .second-section */
+  .light-theme .second-section:hover .block:not(:hover) {
+      background-color: #f5f5f5; /* Светло-серый фон для неактивных блоков */
+      opacity: 1; /* Сохраняем полную непрозрачность */
+  }
+  
+  /* При наведении на блок выделяем его, остальные блоки не затемняются */
+  .light-theme .block:hover {
+      transform: scale(1.05); /* Небольшое увеличение блока */
+      z-index: 10; /* Повышаем блок над другими */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Тень для выделения */
+  }
+  
+  /* Медиа-запросы для адаптивности */
+  @media (max-width: 768px) {
+      .second-line .container,
+      .top-line {
+          flex-direction: column;
+          text-align: center;
+      }
+  
+      .menu-icons {
+          flex-direction: column;
+          align-items: center;
+      }
+  
+      .menu-button, .icon-search, .icon-cart, .theme-toggle {
+          margin: 10px 0;
+      }
+  
+      .background-image {
+          height: calc(100vh - 180px); /* Высота уменьшена, чтобы учесть изменения в размере шапки на мобильных устройствах */
+      }
+      
+      /* Адаптируем логотип и иконки для мобильных устройств */
+      .logo {
+          margin-bottom: 20px; /* Добавляем отступ снизу для логотипа */
+          font-size: 1.8rem; /* Уменьшаем размер логотипа */
+      }
+      
+      .menu-icons {
+          flex-direction: row; /* Располагаем иконки в ряд */
+          justify-content: center; /* Центрируем иконки */
+      }
+      
+      .menu-button, .icon-search, .icon-cart, .theme-toggle {
+          font-size: 24px; /* Увеличиваем размер иконок */
+          padding: 10px; /* Добавляем паддинг для большей области клика */
+      }
+      
+      /* Адаптируем текст первого блока для мобильных */
+      .intro-text h2 {
+          font-size: 1.8rem; /* Уменьшаем размер заголовка */
+      }
+      
+      .intro-text p {
+          font-size: 1rem; /* Уменьшаем размер текста параграфа */
+      }
+      
+      /* Стили для планшетов и более маленьких устройств */
+      @media (max-width: 992px) {
+          .container {
+              padding: 0 2%;
+          }
+      
+          .logo {
+              font-size: 2rem;
+          }
+      }
+      
+      /* Стили для больших экранов */
+      @media (min-width: 1200px) {
+          .container {
+              padding: 0 3%;
+          }
+      
+          .logo {
+              font-size: 2.5rem;
+          }
+      }
+  }    
+  
+  /*2 блок первой страницы */
+  
+  .new-arrivals {
+      display: flex; /* Применяем Flexbox */
+      justify-content: space-around; /* Равномерное распределение блоков с равными промежутками */
+    align-items: center;
+    padding: 21px 1%;
+    background-color: #000; /* Если требуется фоновый цвет */
+    position: relative; /* Для создания затемненного фона */
+  }
+  
+  /* Создаем затемненный фон при наведении на секцию */
+  .new-arrivals:hover {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+  
+    /* Сбрасываем стиль для затемненного фона, когда не находимся в наведении */
+  .new-arrivals:hover .product-item {
+      background-color: transparent; /* Прозрачный фон для продуктов */
+    }
+    
+    /* Возвращаем стиль для продукта, который не наведен */
+    .new-arrivals:hover .product-item:not(:hover) {
+      transform: scale(0.9); /* Уменьшаем размер ненаведенных продуктов */
+      z-index: 1;
+    }
+  
+    .products {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap; /* Позволяет блокам переноситься на следующую строку */
+      width: 99%; /* Занимаем всю доступную ширину */
+    }
+  
+  .product-item {
+    text-align: center;
+    margin-right: 20px; /* Добавляем небольшой отступ между элементами */
+    transition: transform 0.3s, opacity 0.3s; /* плавная анимация для трансформации и прозрачности */
+    position: relative; /* Необходимо для поднятия блока */
+    cursor: pointer; /* Изменение курсора при наведении */
+    flex: 1 1 calc(20% - 40px); /* Каждый блок будет занимать примерно 20% ширины контейнера за вычетом отступов */
+    margin: 20px; /* Добавляем отступы вокруг блоков */
+    max-width: calc(20% - 40px); /* Максимальная ширина для контроля размера блоков */
+  }
+  
+  /* Стиль для продукта при наведении курсора */
+  .product-item:hover {
+      transform: scale(1.05); /* немного увеличиваем продукт */
+      z-index: 10; /* увеличиваем z-index, чтобы продукт был над другими */
+    }
+  
+  /* Затемняем остальные продукты, когда один из них в состоянии hover */
+  .products:hover .product-item:not(:hover) {
+      opacity: 0.6; /* затемняем все продукты, кроме того, на который наведен курсор */
+    }
+    
+  /* Сброс стиля затемнения для продукта, на который наведен курсор */
+  .products .product-item:hover {
+      opacity: 1; /* полная видимость для продукта под курсором */
+      box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5); /* добавляем тень вокруг продукта для выделения */
+    }
+  
+  .product-item img {
+    width: 100%; /* Размер изображения товара */
+    max-width: 100%; /* Изображения будут растягиваться на всю ширину блока */
+    height: auto; /* Высота изображения будет подстраиваться автоматически */
+    margin-bottom: 20px; /* Отступ снизу изображения */
+  }
+  
+  .product-item a {
+      text-decoration: none; /* Убирает подчеркивание текста в ссылках */
+      color: inherit; /* Заставляет текст ссылок наследовать цвет от родительского элемента */
+    }
+    
+  
+  .product-item h3 {
+    font-size: 1.2rem;
+    color: #FFF;
+    margin-bottom: 10px;
+  }
+  
+  .product-item p {
+    font-size: 1rem;
+    color: #FFF;
+  }
+  
+  .new-collection {
+    flex-basis: 40%;
+    text-align: right;
+  }
+  
+  .new-collection h2 {
+    font-size: 2rem;
+    color: #FFF;
+    margin-bottom: 30px;
+  }
+  
+  .collection-info {
+    margin-bottom: 30px;
+  }
+  
+  .collection-info h3 {
+    font-size: 1.5rem;
+    color: #FFF;
+  }
+  
+  .collection-info button {
+    background: #FFF;
+    color: #000;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .collection-info button:hover {
+    background-color: #ccc; /* Светло-серый фон при наведении */
+  }
+  
+  .new-collection img {
+    width: 100%; /* Размер изображения мужчины */
+    max-width: 400px; /* Максимальная ширина */
+  }
+  
+  /* 3 BLOCK */
+  
+  /* Стили для контейнера секции */
+  .second-section {
+    background-color: white; /* Белый фон для светлой темы */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Распределение блоков по горизонтали */
+    gap: 25px; /* Расстояние между блоками */
+    position: relative; /* Относительное позиционирование для создания оверлея */
+    background: #fff; /* Белый фон контейнера */
+  }
+
+  /* Стили для темной темы */
+.dark-theme .second-section {
+  background-color: black; /* Черный фон для темной темы */
+  /* ... другие стили ... */
+}
+  
+/* Стили для темной темы */
+.dark-theme .block {
+  background-color: rgb(111, 109, 109); /* Черный фон */
+  color: rgb(255, 255, 255); /* Белый текст */
+  /* ... остальные стили ... */
+}
+
+  /* Стили для каждого блока в секции */
+  .block {
+    background-color: white; /* Белый фон */
+    color: black; /* Черный текст */
+      width: calc(20% - 20px); /* Расчет ширины с учетом отступов */
+      margin: 45px; /* Установка отступов для блока */
+      background-color: #ffffff; /* Фон блока */
+      border-radius: 10px; /* Скругление углов блока */
+      overflow: hidden; /* Обрезка содержимого внутри границ блока */
+      cursor: pointer; /* Указатель мыши для кликабельности */
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      will-change: opacity, transform; /* Оптимизация производительности */
+      position: relative; /* Относительное позиционирование для псевдо-элементов */
+  } 
+  
+  /* Стили для расположения блоков лесенкой */
+  .block:nth-child(1) {
+    z-index: 3; /* Самый верхний блок */
+    transform: translate(1px);
+  }
+  
+  .block:nth-child(2) {
+    z-index: 2; /* Средний блок */
+    transform: translateY(19px);
+  }
+  
+  .block:nth-child(3) {
+    z-index: 1; /* Нижний блок */
+    transform: translateY(33px);
+  }
+  
+  /* Показывать блоки при наведении */
+  .block-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* Анимация исчезновения при убирании мыши */
+  .block-hidden {
+    opacity: 1;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-in, transform 0.6s ease-in;
+  }
+  
+  .block img {
+      width: 100%; /* Полная ширина блока */
+      height: auto; /* Автоматическая высота сохраняет пропорции изображения */
+      transition: opacity 0.7s ease; /* Плавный переход прозрачности */
+  }
+  
+  .block h1 {
+      font-size: 18px; /* Размер шрифта для заголовка */
+      margin: 10px; /* Отступы вокруг заголовка */
+      color: #000000; /* Цвет текста */
+  }
+  
+  .block p {
+      font-size: 14px; /* Размер шрифта абзаца */
+      padding: 0 10px 10px; /* Отступы для абзаца */
+      color: #000000; /* Цвет текста */
+  }
+  
+  .block:hover {
+      transform: translateY(-5px); /* Поднятие блока */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 1.2); /* Тень для выделения */
+  }
+  
+  /* Стили для блока при наведении на общий контейнер .second-section */
+  .second-section:hover .block:not(:hover) {
+      opacity: 1; /* Затемнение неактивных блоков */
+  }
+  
+  /* Отзывчивость: адаптация блоков для маленьких экранов */
+  @media (max-width: 768px) {
+      .block {
+          width: calc(50% - 20px); /* Два блока в ряд на маленьких экранах */
+      }
+  }
+  
+  @media (max-width: 480px) {
+      .block {
+          width: 100%; /* Один блок на всю ширину на очень маленьких экранах */
+      }
+  }
+
+  /* Стили для светлой темы */
+.light-theme .collection-section {
+  background-color: white; /* Белый фон */
+  color: black; /* Черный текст */
+}
+.light-theme .collection-section button {
+background-color: black; /* Черная кнопка */
+color: white; /* Белый текст на кнопке */
+border: 1px solid black; /* Черная граница */
+}
+
+/* Стили для темной темы */
+.dark-theme .collection-section {
+background-color: black; /* Черный фон */
+color: rgb(255, 255, 255); /* Белый текст */
+}
+
+.dark-theme .collection-section button {
+background-color: rgb(0, 0, 0); /* Белая кнопка /
+color: black; /* Черный текст на кнопке */
+border: 1px solid white; /* Белая граница */
+}
+
+.collection-section button {
+padding: 10px 20px;
+font-size: 16px;
+cursor: pointer;
+margin-top: 20px; /* Отступ сверху для кнопки */
+transition: background-color 0.3s, color 0.3s; /* Плавный переход для цвета фона и текста */
+}
+
+.collection-section button:hover {
+opacity: 0.8; /* Небольшое затемнение кнопки при наведении */
+}
+  /*4 BLOCK */
+  .collection-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    background-color: #000; /* Черный фон для секции */
+    color: #fff; /* Белый текст */
+  }
+  
+  .collection-image {
+    background: url('img/ABOUTUS.png') no-repeat center center;
+    background-size: cover;
+    width: 375px; /* Задаем ширину */
+    height: 375px; /* Высота будет установлена автоматически для сохранения пропорций */
+    margin-left: 11%;
+  }
+
+  .collection-content {
+    flex-basis: 50%;
+    padding: 0 50px; /* Отступ справа для текста и кнопки */
+  }
+  
+  .collection-content h2 {
+    margin-bottom: 20px; /* Отступ под заголовком */
+    font-size: 2rem; /* Размер шрифта для заголовка */
+    text-transform: uppercase; /* Все буквы заглавные */
+  }
+  
+  .collection-content p {
+    margin-bottom: 30px; /* Отступ под параграфом */
+    line-height: 1.6; /* Интерлиньяж (расстояние между строками) */
+  }
+  
+  .collection-content button {
+    padding: 10px 20px; /* Внутренние отступы для кнопки */
+    font-size: 1rem; /* Размер шрифта кнопки */
+    background-color: transparent; /* Прозрачный фон кнопки */
+    color: #fff; /* Белый текст */
+    border: 1px solid #fff; /* Белая рамка */
+    cursor: pointer; /* Курсор в виде указателя */
+    transition: background-color 0.3s, color 0.3s; /* Плавное изменение цвета фона и текста */
+  }
+  
+  .collection-content button:hover {
+    background-color: #fff; /* Белый фон при наведении */
+    color: #000; /* Черный текст при наведении */
+  }
+  
+  @media (max-width: 768px) {
+    .collection-section {
+        flex-direction: column;
+    }
+  
+    .collection-image,
+    .collection-content {
+        flex-basis: 100%;
+    }
+  
+    .collection-content {
+        padding: 20px; /* Меньший отступ для мобильных устройств */
+    }
+  }
+  
+  /* 5-6 BLOCK FOOTER */
+  /* Блок партнёров */
+
+  /* Стили для темной темы оставляем без изменений */
+.dark-theme .footer-section {
+  background-color: #222; /* Темный фон */
+  color: #ddd; /* Светлый текст */
+}
+
+/* Добавляем стили для светлой темы */
+.light-theme .footer-section {
+  background-color: #fff; /* Светлый фон */
+  color: #333; /* Темный текст */
+}
+
+  .brands-section h2 {
+    color: #000; /* Черный текст */
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  
+  .brands-section h2 {
+    color: #fff;
+    margin-bottom: 30px;
+  }
+  
+  .brands {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .brand img {
+    max-width: 150px; /* или другой размер в зависимости от вашего дизайна */
+    margin: 0 15px;
+    opacity: 0.8; /* делаем логотипы немного прозрачнее для эстетики */
+  }
+  
+  .brand img:hover {
+    opacity: 1; /* полная непрозрачность при наведении */
+  }
+  
+  /* Подвал */
+
+/* Стили для подвала */
+.footer-section {
+  background-color: #222;
+  color: #ddd;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Центрируем содержимое по горизонтали */
+  justify-content: center; /* Центрируем содержимое по вертикали */
+  text-align: center; /* Центрируем текст */
+  width: 100%; /* Полная ширина */
+}
+
+/* Стили для логотипа и блока о магазине */
+.footer-logo,
+.footer-about {
+  flex: 1 100%; /* На мобильных устройствах занимают всю ширину */
+  margin-bottom: 20px; /* Отступ снизу для мобильной версии */
+  text-align: center; /* Центрирование текста */
+}
+
+/* Стили для блоков категорий и подписки */
+.footer-categories,
+.footer-subscription {
+  flex: 1; /* Равное распределение пространства между категориями и подпиской */
+  text-align: center; /* Центрирование текста */
+}
+
+/* Стили для карты */
+.map-container {
+  order: 2; /* Помещает карту на второе место в контейнере */
+  width: 100%;
+  max-width: 300px; /* Ограничивает максимальную ширину карты */
+  height: auto; /* Позволяет карте быть с пропорциональной высотой */
+}
+
+/* Контейнер для карты и контактной информации */
+.map-and-contact-container {
+  display: flex;
+  justify-content: center; /* Центрируем карту и контакты */
+  align-items: start;
+  width: 100%; /* Полная ширина */
+  max-width: 1200px; /* Максимальная ширина, согласованная с .footer-container */
+  margin: 20px auto; /* Отступ сверху и центрирование */
+}
+
+/* Стили для контактной информации */
+.footer-contacts {
+  text-align: center;
+  margin-bottom: 20px; /* Отступ снизу */
+}
+
+/* Стили для нижней части подвала с копирайтом */
+.footer-bottom {
+  width: 100%; /* Полная ширина */
+  border-top: 1px solid #444; /* Линия сверху */
+  padding: 10px 0; /* Вертикальные отступы */
+  text-align: center; /* Центрирование текста */
+  margin-top: 20px; /* Отступ сверху от предыдущих элементов подвала */
+}
+
+/* Стили для адаптации подвала на мобильных устройствах */
+@media (max-width: 768px) {
+  .footer-section {
+    flex-direction: column; /* Столбцовое расположение элементов */
+    align-items: center; /* Центрирование элементов */
+  }
+
+  .footer-logo,
+  .footer-about,
+  .footer-categories,
+  .footer-subscription {
+    text-align: center; /* Центрирование текста */
+    flex-basis: 100%; /* Каждый элемент занимает полную ширину */
+  }
+
+  .map-container {
+    order: 1; /* Перемещает карту в начало */
+    margin-bottom: 20px; /* Отступ снизу после карты */
+  }
+
+  .footer-contacts {
+    order: 2; /* Перемещает контактную информацию после карты */
+  }
+
+  .footer-bottom {
+    order: 4; /* Перемещает копирайт в самый низ */
+  }
+}
+
+/* Стили для логотипа в подвале */
+.footer-logo {
+  order: -1; /* Помещает логотип в начало контейнера */
+  margin-right: 1399px; /* Оставляет место справа, тем самым выравнивая логотип влево */
+}
+
+/* Стили для контейнера подвала */
+.footer-container {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  justify-content: space-between; /* Распределение элементов по ширине контейнера */
+  padding: 20px; /* Добавить отступы внутри контейнера */
+}
+
+/* Стили для блоков в подвале */
+.footer-block {
+  flex: 1; /* Дает каждому блоку равную ширину */
+  margin: 0 20px; /* Добавляет отступы вокруг блоков */
+  text-align: center; /* Центрирует текст в блоках */
+}
+
+  /* Общие стили для логотипа в шапке и подвале */
+.header-logo img,
+.footer-logo img {
+  width: auto; /* Автоматическая ширина в соответствии с высотой */
+  height: 75px; /* Заданная высота для обоих */
+}
+
+/* Стили для изменения логотипа в зависимости от темы */
+.dark-theme .header-logo img,
+.dark-theme .footer-logo img {
+  content: url('img/LogoDT.png');
+}
+
+.light-theme .header-logo img,
+.light-theme .footer-logo img {
+  content: url('img/LogoLT.png');
+}
+
+.footer-logo img {
+  height: 55px; /* Высота логотипа */
+  width: 55px;/* Ширина будет рассчитана автоматически */
+}
+
+/* Стили для категорий */
+.footer-block.categories {
+  order: 1; /* Помещает категории на первое место в контейнере */
+  text-align: left; /* Выравнивает категории по левому краю */
+}
+
+/* Стили для заголовка категорий */
+.footer-block.categories h3 {
+  margin-bottom: 10px; /* Отступ снизу для заголовка */
+}
+
+/* Стили для кнопок категорий */
+.footer-block.categories .category-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Два столбца для категорий */
+  gap: 10px; /* Расстояние между кнопками */
+}
+
+.footer-block.categories .category-links button {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.3s;
+}
+
+.footer-block.categories .category-links button:hover {
+  color: #ccc; /* Цвет при наведении */
+}
+
+/* Стили для текста после линии */
+.footer-bottom {
+  width: 100%; /* Занимает всю доступную ширину */
+  text-align: center; /* Выравнивание текста по центру */
+  margin-top: 20px; /* Отступ сверху */
+  padding-top: 10px; /* Отступ сверху внутри элемента */
+  border-top: 1px solid #444; /* Граница сверху */
+  order: 99; /* Гарантирует, что блок будет в конце, независимо от количества элементов */
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-logo,
+  .footer-block,
+  .map-container,
+  .contact-info {
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-block.categories .category-links {
+    grid-template-columns: 1fr; /* Один столбец для категорий на маленьких экранах */
+  }
+}
+
+/* Стили для ссылок категорий */
+.category-links {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Две колонки для ссылок */
+  gap: 10px; /* Отступы между ссылками */
+  width: 100%; /* Полная ширина для блока ссылок */
+}
+
+.category-links a {
+  color: inherit; /* Цвет текста, как у родителя */
+  text-decoration: none; /* Без подчеркивания */
+  padding: 5px;
+  transition: color 0.3s ease; /* Плавное изменение цвета */
+}
+
+.category-links a:hover {
+  color: #ccc; /* Цвет при наведении */
+}
+
+/* Стили для нижней части подвала с копирайтом */
+.footer-bottom {
+  width: 100%; /* Полная ширина */
+  border-top: 1px solid #444; /* Линия сверху */
+  padding: 10px 0; /* Отступы сверху и снизу */
+  text-align: center; /* Выравнивание текста по центру */
+  margin-top: 20px; /* Отступ сверху */
+  order: 2; /* Помещаем нижнюю часть подвала в конец */
+}
+
+/* Медиа-запрос для мобильных устройств */
+@media (max-width: 768px) {
+  .footer-section {
+    flex-direction: column; /* Вертикальное расположение элементов */
+  }
+
+  .footer-logo,
+  .footer-block,
+  .footer-bottom {
+    width: 100%; /* Полная ширина для мобильных устройств */
+    text-align: center; /* Выравнивание текста по центру */
+    order: 0; /* Сброс порядка для мобильных устройств */
+  }
+
+  .category-links {
+    grid-template-columns: 1fr; /* Один столбец для мобильных устройств */
+  }
+}
+
+.category-links button {
+  width: 50%; /* Каждая кнопка занимает половину ширины контейнера */
+  padding: 8px;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.category-links button:hover {
+  color: #ccc; /* Цвет при наведении */
+}
+
+@media (max-width: 768px) {
+  .category-links {
+    max-width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .category-links button {
+    width: 100%; /* На маленьких экранах каждая кнопка занимает 100% ширины */
+  }
+}
+
+.footer-block h3 {
+  color: #fff;
+  margin-bottom: 10px;
+}
+
+.footer-block p,
+.footer-bottom p {
+  color: #aaa;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .footer-content {
+    justify-content: center;
+  }
+
+  .footer-block {
+    /* Убедитесь, что у всех блоков .footer-block одинаковые стили для мобильных */
+    margin-bottom: 20px;
+  }
+}
+
+/* Стили для светлой темы */
+.light-theme .footer-section {
+  background-color: #fff; /* Светлый фон */
+  color: #333; /* Темный текст */
+}
+
+.light-theme .footer-block h3,
+.light-theme .footer-bottom p {
+  color: #333; /* Темный текст для заголовков и абзацев */
+}
+
+/* Стили для темной темы */
+.dark-theme .footer-section {
+  background-color: #222; /* Темный фон */
+  color: #ddd; /* Светлый текст */
+}
+
+.dark-theme .footer-block h3,
+.dark-theme .footer-bottom p {
+  color: #ddd; /* Светлый текст для заголовков и абзацев */
+}
+
+/* Стили для содержимого подвала */
+.footer-content {
+  display: flex;
+  width: 100%;
+  max-width: 1200px; /* Можно изменить в зависимости от желаемой максимальной ширины */
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  margin-bottom: 20px; /* Отступ до нижней части подвала */
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+  .footer-section {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-content,
+  .footer-logo {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .footer-block {
+    margin: 10px 0;
+  }
+}
+
+/* Медиа-запрос для адаптации подвала на маленьких экранах */
+@media (max-width: 768px) {
+  .footer-container {
+    justify-content: center;
+  }
+
+  .footer-logo {
+    margin: 0 0 20px 0; /* Убирает автоматический маржин справа и добавляет отступ снизу */
+  }
+
+  .footer-block,
+  .map-container,
+  .contact-info {
+    width: 100%; /* Устанавливает ширину всех элементов в подвале на 100% */
+    text-align: center;
+    margin: 10px 0; /* Добавляет вертикальные отступы */
+  }
+
+  .footer-bottom {
+    order: 99; /* Гарантирует, что копирайт остаётся внизу */
+  }
+}
+
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Стили для контактной информации и кнопки подробнее */
+.contact-info, .footer-bottom {
+  order: 4; /* Последние элементы */
+  width: 100%;
+  text-align: center; /* Выравнивание текста по центру */
+  padding-top: 10px; /* Отступ сверху */
+}
+
+/* Стили для текста после линии копирайта */
+.footer-bottom {
+  border-top: 1px solid #444; /* Граница сверху */
+  padding-top: 10px; /* Отступ сверху */
+}
+
+/* Стили для блока контактов */
+.contact-info {
+  order: 3; /* Помещает контактную информацию на третье место в контейнере */
+  text-align: left; /* Выравнивает контактную информацию по левому краю */
+}
+
+/* Стили для нижней части подвала (копирайт) */
+.footer-bottom {
+  order: 4; /* Помещает копирайт на четвертое место в контейнере */
+  width: 100%; /* Занимает всю ширину */
+  text-align: center; /* Центрирует текст */
+}
+
+.footer-block button {
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  padding: 8px;
+  transition: color 0.3s;
+}
+
+.footer-block button:hover {
+  color: #ccc;
+}
+
+@media (max-width: 768px) {
+  .newsletter {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Адаптивность для мобильных устройств */
+  .footer-container,
+  .map-and-contact-container {
+    flex-direction: column; /* Столбцовое расположение элементов */
+  }
+
+  .footer-block,
+  .map-container {
+    width: 100%; /* Элементы занимают полную ширину */
+    max-width: none; /* Убираем ограничение ширины */
+    margin: 10px 0; /* Вертикальные отступы для мобильных устройств */
+  }
+}
+
+/*Переходы*/
+/* Общие стили для блоков с переходами */
+.footer-block, 
+.category-links button, 
+.footer-logo, 
+.map-container, 
+.contact-info {
+  transition: transform 0.3s ease, opacity 0.3s ease; /* Плавное изменение прозрачности и трансформации */
+}
+
+/* Стили для блоков и кнопок при наведении */
+.footer-block:hover, 
+.category-links button:hover {
+  transform: translateY(-5px); /* Поднимает элемент вверх */
+  opacity: 0.8; /* Немного уменьшает прозрачность */
+}
+
+/* Стили для логотипа при наведении */
+.footer-logo:hover {
+  transform: scale(1.05); /* Незначительно увеличивает размер */
+}
+
+/* Стили для карты при наведении */
+.map-container:hover {
+  transform: scale(1.05); /* Незначительно увеличивает карту */
+}
+
+/* Стили для текста контактной информации при наведении */
+.contact-info:hover {
+  color: #ccc; /* Меняет цвет текста */
+}
+
+/* Анимация для копирайта */
+.footer-bottom {
+  transition: background-color 0.3s ease; /* Плавное изменение фона */
+}
+
+.footer-bottom:hover {
+  background-color: #333; /* Темнеет при наведении */
+}
